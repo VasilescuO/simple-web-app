@@ -1,5 +1,6 @@
-replicaCount: 3
+replicaCount: 2
 
+environment: pre
 image:
   repository: nginx
   tag: stable
@@ -13,12 +14,24 @@ ingress:
   enabled: true
   className: nginx
   hosts:
-    - host: simple-web.local
+    - host: simple-web-pre.local
       paths:
         - path: /
           pathType: Prefix
 
   tls: []
+
+html:
+  indexHtml: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Simple Web App Pre</title>
+    </head>
+    <body>
+      <h1>Hello from Helm! This is the Pre Environment</h1>
+    </body>
+    </html>
 
 resources: {}
 
